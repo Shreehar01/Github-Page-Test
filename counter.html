@@ -1,68 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Base styles for larger screens */
-        .stats-container {
-            background-color: black;
-            max-height: 300px;
-        }
-
-        .stats {
-            margin: 0 auto;
-            padding: 20px;
-            color: white !important;
-            display: flex;
-            max-width: 1260px;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-            text-transform: uppercase;
-            height: 200px;
-        }
-
-        .stats div {
-            width: 33%;
-        }
-
-        .stats div span {
-            font-size: 140px;
-        }
-
-        .stats div h4 {
-            font-size: 20px;
-            font-weight: 300;
-        }
-
-        /* Media query for small screens */
-        @media (max-width: 767px) {
-            .stats-container{
-                max-height: 1500px;
-            }
-            .stats {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .stats div {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-
-            .stats div span {
-                font-size: 60px;
-            }
-
-            .stats div h4 {
-                font-size: 14px;
-                margin-top: 5px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="counter.css">
+    <title>Counter</title>
 </head>
-
-    <!-- <div style="height:100vh;"></div> -->
+<body>
     <div class="stats-container">
         <div class="stats">
             <div>
@@ -80,69 +24,6 @@
         </div>
     </div>
     <div style="height:100vh;"></div>
-    <script>
-        const counters = document.querySelectorAll('.counter');
-        document.addEventListener('scroll', scrollPage);
-        let scrollStarted = false;
-
-        function isElementInViewport(el) {
-            var rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        function scrollPage() {
-            const scrollPos = window.scrollY;
-
-            if (isElementInViewport(counters[0]) && !scrollStarted) {
-                countUp();
-                scrollStarted = true;
-            } 
-            // else if (!isElementInViewport(counters[0]) && scrollStarted) {
-            //     reset();
-            //     scrollStarted = false;
-            // }
-        }
-
-
-        function countUp() {
-            counters.forEach((counter) => {
-                counter.innerText = '0';
-
-                const updateCounter = (updateCount = 0) => {
-                    // Get count target
-                    const target = +counter.getAttribute('data-target');
-                    // Get current counter value
-                    const c = +counter.innerText;
-
-                    // Create an increment
-                    const increment = target / 200;
-
-                    // If counter is less than target, add increment
-                    if (c < target) {
-                        // Round up and set counter value
-                        counter.innerText = `${(c + increment).toFixed(2)}`;
-
-                        // Add a delay for the last five updates
-                        const delay = updateCount >= 195 ? 5 : 2; // Adjust the delay time as needed
-                        setTimeout(() => {
-                            updateCounter(updateCount + 1);
-                        }, delay);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-
-                updateCounter();
-            });
-        }
-
-        function reset() {
-            counters.forEach((counter) => (counter.innerHTML = '0'));
-        }
-
-    </script>
+    <script src="counter.js"></script>
+</body>
+</html>

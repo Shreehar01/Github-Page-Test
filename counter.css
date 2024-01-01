@@ -1,0 +1,56 @@
+/* Base styles for larger screens */
+.stats-container {
+    background-color: black;
+    max-height: 300px;
+}
+
+.stats {
+    margin: 0 auto;
+    padding: 20px;
+    color: white !important;
+    display: flex;
+    max-width: 1260px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    text-transform: uppercase;
+    height: 200px;
+}
+
+.stats div {
+    width: 33%;
+}
+
+.stats div span {
+    font-size: 140px;
+}
+
+.stats div h4 {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/* Media query for small screens */
+@media (max-width: 767px) {
+    .stats-container{
+        max-height: 1500px;
+    }
+    .stats {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .stats div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .stats div span {
+        font-size: 60px;
+    }
+
+    .stats div h4 {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+}
